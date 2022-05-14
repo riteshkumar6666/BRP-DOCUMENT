@@ -1,0 +1,817 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| address_book       |
+| addressbook1       |
+| brp                |
+| brp101             |
+| brp_db             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| student1           |
+| student2           |
+| student3           |
++--------------------+
+12 rows in set (0.00 sec)
+
+mysql> use brp;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_brp |
++---------------+
+| bridgelab     |
+| user          |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql> desc bridgelab;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| gender | varchar(5)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select *from bridgelab;
++----+--------+-----+------------+--------+
+| id | name   | age | phone      | gender |
++----+--------+-----+------------+--------+
+|  1 | RITESH |  23 | 7856435432 | M      |
+|  2 | MUKESH |  27 | 7876435482 | M      |
+|  3 | RAMESH |  29 | 7876935482 | M      |
+|  4 | RAHUL  |  34 | 7876905482 | M      |
++----+--------+-----+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql>  ALTER TABLE bridgelab
+    -> ADD DOB VARCHAR(58);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from bridgelab;
++----+--------+-----+------------+--------+------+
+| id | name   | age | phone      | gender | DOB  |
++----+--------+-----+------------+--------+------+
+|  1 | RITESH |  23 | 7856435432 | M      | NULL |
+|  2 | MUKESH |  27 | 7876435482 | M      | NULL |
+|  3 | RAMESH |  29 | 7876935482 | M      | NULL |
+|  4 | RAHUL  |  34 | 7876905482 | M      | NULL |
++----+--------+-----+------------+--------+------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE bridgelab
+    -> MODIFY gender varchar(5)
+    -> AFTER DOB;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from bridgelab;
++----+--------+-----+------------+------+--------+
+| id | name   | age | phone      | DOB  | gender |
++----+--------+-----+------------+------+--------+
+|  1 | RITESH |  23 | 7856435432 | NULL | M      |
+|  2 | MUKESH |  27 | 7876435482 | NULL | M      |
+|  3 | RAMESH |  29 | 7876935482 | NULL | M      |
+|  4 | RAHUL  |  34 | 7876905482 | NULL | M      |
++----+--------+-----+------------+------+--------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE bridgelab
+    -> RENAME TO bridgelabCommunity;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc  bridgelabCommunity;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| DOB    | varchar(58) | YES  |     | NULL    |       |
+| gender | varchar(5)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> truncate table bridgelabCommunity;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc  bridgelabCommunity;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| DOB    | varchar(58) | YES  |     | NULL    |       |
+| gender | varchar(5)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> select * from bridgelabCommunity;
+Empty set (0.00 sec)
+
+mysql> drop table  bridgelabCommunity;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_brp |
++---------------+
+| user          |
++---------------+
+1 row in set (0.01 sec)
+
+mysql>
+
+
+
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| address_book       |
+| addressbook1       |
+| brp                |
+| brp101             |
+| brp_db             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| student1           |
+| student2           |
+| student3           |
++--------------------+
+12 rows in set (0.00 sec)
+
+mysql> use brp;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_brp |
++---------------+
+| bridgelab     |
+| user          |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql> desc bridgelab;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| gender | varchar(5)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select *from bridgelab;
++----+--------+-----+------------+--------+
+| id | name   | age | phone      | gender |
++----+--------+-----+------------+--------+
+|  1 | RITESH |  23 | 7856435432 | M      |
+|  2 | MUKESH |  27 | 7876435482 | M      |
+|  3 | RAMESH |  29 | 7876935482 | M      |
+|  4 | RAHUL  |  34 | 7876905482 | M      |
++----+--------+-----+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql>  ALTER TABLE bridgelab
+    -> ADD DOB VARCHAR(58);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from bridgelab;
++----+--------+-----+------------+--------+------+
+| id | name   | age | phone      | gender | DOB  |
++----+--------+-----+------------+--------+------+
+|  1 | RITESH |  23 | 7856435432 | M      | NULL |
+|  2 | MUKESH |  27 | 7876435482 | M      | NULL |
+|  3 | RAMESH |  29 | 7876935482 | M      | NULL |
+|  4 | RAHUL  |  34 | 7876905482 | M      | NULL |
++----+--------+-----+------------+--------+------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE bridgelab
+    -> MODIFY gender varchar(5)
+    -> AFTER DOB;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from bridgelab;
++----+--------+-----+------------+------+--------+
+| id | name   | age | phone      | DOB  | gender |
++----+--------+-----+------------+------+--------+
+|  1 | RITESH |  23 | 7856435432 | NULL | M      |
+|  2 | MUKESH |  27 | 7876435482 | NULL | M      |
+|  3 | RAMESH |  29 | 7876935482 | NULL | M      |
+|  4 | RAHUL  |  34 | 7876905482 | NULL | M      |
++----+--------+-----+------------+------+--------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE bridgelab
+    -> RENAME TO bridgelabCommunity;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc  bridgelabCommunity;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| DOB    | varchar(58) | YES  |     | NULL    |       |
+| gender | varchar(5)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> truncate table bridgelabCommunity;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc  bridgelabCommunity;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| DOB    | varchar(58) | YES  |     | NULL    |       |
+| gender | varchar(5)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> select * from bridgelabCommunity;
+Empty set (0.00 sec)
+
+mysql> drop table  bridgelabCommunity;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_brp |
++---------------+
+| user          |
++---------------+
+1 row in set (0.01 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| address_book       |
+| addressbook1       |
+| brp                |
+| brp101             |
+| brp_db             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| student1           |
+| student2           |
+| student3           |
++--------------------+
+12 rows in set (0.00 sec)
+
+mysql> use brp;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_brp |
++---------------+
+| bridgelab     |
+| user          |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql> desc bridgelab;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| gender | varchar(5)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select *from bridgelab;
++----+--------+-----+------------+--------+
+| id | name   | age | phone      | gender |
++----+--------+-----+------------+--------+
+|  1 | RITESH |  23 | 7856435432 | M      |
+|  2 | MUKESH |  27 | 7876435482 | M      |
+|  3 | RAMESH |  29 | 7876935482 | M      |
+|  4 | RAHUL  |  34 | 7876905482 | M      |
++----+--------+-----+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE bridgelabADD DOB VARCHAR(58);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DOB VARCHAR(58)' at line 1
+mysql> ALTER TABLE bridgelabADD DOB VARCHAR(58);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DOB VARCHAR(58)' at line 1
+mysql>  ALTER TABLE bridgelab
+    -> ADD DOB VARCHAR(58);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from bridgelab;
++----+--------+-----+------------+--------+------+
+| id | name   | age | phone      | gender | DOB  |
++----+--------+-----+------------+--------+------+
+|  1 | RITESH |  23 | 7856435432 | M      | NULL |
+|  2 | MUKESH |  27 | 7876435482 | M      | NULL |
+|  3 | RAMESH |  29 | 7876935482 | M      | NULL |
+|  4 | RAHUL  |  34 | 7876905482 | M      | NULL |
++----+--------+-----+------------+--------+------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE bridgelab
+    -> MODIFY gender varchar(5)
+    -> AFTER DOB;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from bridgelab;
++----+--------+-----+------------+------+--------+
+| id | name   | age | phone      | DOB  | gender |
++----+--------+-----+------------+------+--------+
+|  1 | RITESH |  23 | 7856435432 | NULL | M      |
+|  2 | MUKESH |  27 | 7876435482 | NULL | M      |
+|  3 | RAMESH |  29 | 7876935482 | NULL | M      |
+|  4 | RAHUL  |  34 | 7876905482 | NULL | M      |
++----+--------+-----+------------+------+--------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE bridgelab
+    -> RENAME TO bridgelabCommunity;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc  bridgelabCommunity;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| DOB    | varchar(58) | YES  |     | NULL    |       |
+| gender | varchar(5)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> truncate table bridgelabCommunity;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc  bridgelabCommunity;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| DOB    | varchar(58) | YES  |     | NULL    |       |
+| gender | varchar(5)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> select * from bridgelabCommunity;
+Empty set (0.00 sec)
+
+mysql> drop table  bridgelabCommunity;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_brp |
++---------------+
+| user          |
++---------------+
+1 row in set (0.01 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| address_book       |
+| addressbook1       |
+| brp                |
+| brp101             |
+| brp_db             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| student1           |
+| student2           |
+| student3           |
++--------------------+
+12 rows in set (0.00 sec)
+
+mysql> use brp;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_brp |
++---------------+
+| bridgelab     |
+| user          |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql> desc bridgelab;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| gender | varchar(5)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select *from bridgelab;
++----+--------+-----+------------+--------+
+| id | name   | age | phone      | gender |
++----+--------+-----+------------+--------+
+|  1 | RITESH |  23 | 7856435432 | M      |
+|  2 | MUKESH |  27 | 7876435482 | M      |
+|  3 | RAMESH |  29 | 7876935482 | M      |
+|  4 | RAHUL  |  34 | 7876905482 | M      |
++----+--------+-----+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql>  ALTER TABLE bridgelab
+    -> ADD DOB VARCHAR(58);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from bridgelab;
++----+--------+-----+------------+--------+------+
+| id | name   | age | phone      | gender | DOB  |
++----+--------+-----+------------+--------+------+
+|  1 | RITESH |  23 | 7856435432 | M      | NULL |
+|  2 | MUKESH |  27 | 7876435482 | M      | NULL |
+|  3 | RAMESH |  29 | 7876935482 | M      | NULL |
+|  4 | RAHUL  |  34 | 7876905482 | M      | NULL |
++----+--------+-----+------------+--------+------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE bridgelab
+    -> MODIFY gender varchar(5)
+    -> AFTER DOB;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from bridgelab;
++----+--------+-----+------------+------+--------+
+| id | name   | age | phone      | DOB  | gender |
++----+--------+-----+------------+------+--------+
+|  1 | RITESH |  23 | 7856435432 | NULL | M      |
+|  2 | MUKESH |  27 | 7876435482 | NULL | M      |
+|  3 | RAMESH |  29 | 7876935482 | NULL | M      |
+|  4 | RAHUL  |  34 | 7876905482 | NULL | M      |
++----+--------+-----+------------+------+--------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE bridgelab
+    -> RENAME TO bridgelabCommunity;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc  bridgelabCommunity;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| DOB    | varchar(58) | YES  |     | NULL    |       |
+| gender | varchar(5)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> truncate table bridgelabCommunity;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc  bridgelabCommunity;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| DOB    | varchar(58) | YES  |     | NULL    |       |
+| gender | varchar(5)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> select * from desc  bridgelabCommunity;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc  bridgelabCommunity' at line 1
+mysql> select * from bridgelabCommunity;
+Empty set (0.00 sec)
+
+mysql> drop table  bridgelabCommunity;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_brp |
++---------------+
+| user          |
++---------------+
+1 row in set (0.01 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| address_book       |
+| addressbook1       |
+| brp                |
+| brp101             |
+| brp_db             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| student1           |
+| student2           |
+| student3           |
++--------------------+
+12 rows in set (0.00 sec)
+
+mysql> use brp;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_brp |
++---------------+
+| bridgelab     |
+| user          |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql> desc bridgelab;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| gender | varchar(5)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select *from bridgelab;
++----+--------+-----+------------+--------+
+| id | name   | age | phone      | gender |
++----+--------+-----+------------+--------+
+|  1 | RITESH |  23 | 7856435432 | M      |
+|  2 | MUKESH |  27 | 7876435482 | M      |
+|  3 | RAMESH |  29 | 7876935482 | M      |
+|  4 | RAHUL  |  34 | 7876905482 | M      |
++----+--------+-----+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE bridgelabADD DOB VARCHAR(58);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DOB VARCHAR(58)' at line 1
+mysql> ALTER TABLE bridgelabADD DOB VARCHAR(58);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DOB VARCHAR(58)' at line 1
+mysql>  ALTER TABLE bridgelab
+    -> ADD DOB VARCHAR(58);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from bridgelab;
++----+--------+-----+------------+--------+------+
+| id | name   | age | phone      | gender | DOB  |
++----+--------+-----+------------+--------+------+
+|  1 | RITESH |  23 | 7856435432 | M      | NULL |
+|  2 | MUKESH |  27 | 7876435482 | M      | NULL |
+|  3 | RAMESH |  29 | 7876935482 | M      | NULL |
+|  4 | RAHUL  |  34 | 7876905482 | M      | NULL |
++----+--------+-----+------------+--------+------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE bridgelab
+    -> MODIFY gender varchar(5)
+    -> AFTER DOB;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from bridgelab;
++----+--------+-----+------------+------+--------+
+| id | name   | age | phone      | DOB  | gender |
++----+--------+-----+------------+------+--------+
+|  1 | RITESH |  23 | 7856435432 | NULL | M      |
+|  2 | MUKESH |  27 | 7876435482 | NULL | M      |
+|  3 | RAMESH |  29 | 7876935482 | NULL | M      |
+|  4 | RAHUL  |  34 | 7876905482 | NULL | M      |
++----+--------+-----+------------+------+--------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE bridgelab
+    -> RENAME TO bridgelabCommunity;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc  bridgelabCommunity;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| DOB    | varchar(58) | YES  |     | NULL    |       |
+| gender | varchar(5)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> truncate table bridgelabCommunity;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc  bridgelabCommunity;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| DOB    | varchar(58) | YES  |     | NULL    |       |
+| gender | varchar(5)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> select * from desc  bridgelabCommunity;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc  bridgelabCommunity' at line 1
+mysql> select * from bridgelabCommunity;
+Empty set (0.00 sec)
+
+mysql> drop table  bridgelabCommunity;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_brp |
++---------------+
+| user          |
++---------------+
+1 row in set (0.01 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
